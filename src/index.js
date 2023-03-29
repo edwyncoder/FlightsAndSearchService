@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const {PORT} = require("./config/serverConfig")
-
+const CityRepository = require("./repository/city-repository")
 const setupAndStartServer = async () => {
 
     // create the express object
@@ -13,6 +13,9 @@ const setupAndStartServer = async () => {
     
     app.listen(PORT, async () => {
         console.log(`Server started at ${PORT}`);
+        const mod = new CityRepository()
+        let a=await mod.createCity({name:"XXXgy"})
+        console.log(a);
     });
 }
 
