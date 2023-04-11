@@ -3,7 +3,7 @@ const { CityService } = require('../services/index');
 const cityService = new CityService();
 
 const create = async (req, res) => {
-    try {
+    try {0
         const city = await cityService.createCity(req.body);
         return res.status(201).json({
             data: city,
