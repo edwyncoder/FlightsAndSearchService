@@ -1,23 +1,27 @@
 const { AirportService } = require('../services/index');
 
-let airportService = new AirportService()
+const airportService = new AirportService();
+
 const create = async (req, res) => {
     try {
-        const result = await airportService.create(req.body)
-        res.status(201).json({
-            error: {},
-            message: 'Sucessfully created airport',
-            data: result,
+        const response = await airportService.create(req.body);
+        return res.status(201).json({
+            message: 'Successfully created the airport',
+            err: {},
+            data: response,
             success: true
         })
     } catch (error) {
-        res.status(500).json({
-            error: error,
-            message: 'Error creating airport in conterllers',
-            data:{},
-            success: false
+        console.log(error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            err: error,
+            message: 'Cannot create a new airport'
         })
     }
 }
 
-module.exports = {create}
+module.exports = {
+    create
+}
